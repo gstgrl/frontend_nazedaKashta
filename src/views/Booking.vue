@@ -95,10 +95,9 @@
         methods: {
             async submitForm() {
                 try {
-                    //this.$router.replace('/thanks');
-                    //const response = await axios.post('http://127.0.0.1:5000/send-email-nazedaKashta', this.formData)
-                    const response = await axios.post('https://backend-decentralizzato.fly.dev/send-email-nazedaKashta', this.formData) //For debug 
-                    console.log(response)
+                    this.$router.replace('/thanks');
+                    const response = await axios.post('http://127.0.0.1:5000/send-email-nazedaKashta', this.formData)
+                    //const response = await axios.post('https://backend-decentralizzato.fly.dev/send-email-nazedaKashta', this.formData) //For debug 
                 } catch (error) {
                     console.error('Errore durante l\'invio dell\'email:', error);
                     alert('Errore durante l\'invio.');

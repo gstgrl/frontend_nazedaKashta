@@ -1,0 +1,48 @@
+{
+    "title": "Ricetta",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "overflow_description": false,
+    "preparing_time": {
+            "type": "time",
+            "value": 35
+    },
+    "cooking_time": {
+            "type": "chef",
+            "value": 25
+    },
+    "calories": {
+            "type": "kcal",
+            "value": 400
+    },
+    "difficulty": {
+        "type": "difficulty",
+        "value": 4
+    },
+    "ingredients": [
+        "aglio",
+        "cipolla",
+        "carote",
+        "sedano",
+        "manzo",
+        "brodo",
+        "marmellata"
+    ],
+    "steps": [
+        {
+
+        },
+        {
+
+        },
+        {
+
+        },
+        {
+
+        }
+    ],
+    "display": true,
+    "id": 100000
+
+    
+}

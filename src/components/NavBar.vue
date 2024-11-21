@@ -17,9 +17,9 @@
                 <div class="collapse navbar-collapse" id="navbarNav" style="flex-grow: unset;">
                     <ul class="navbar-nav" style="margin-right: 2rem;">
                         <li class="nav-item">
-                            <RouterLink class="nav-link disabled" to="/recipe"><h6>Ricettario</h6></RouterLink>
+                            <RouterLink class="nav-link" to="/recipes"><h6>Ricettario</h6></RouterLink>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item hidden">
                             <RouterLink class="nav-link disabled" to="/service"><h6>Servizi</h6></RouterLink>
                         </li>
                     </ul>

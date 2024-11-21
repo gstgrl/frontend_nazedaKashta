@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue';
 import Services from '@/views/Services.vue';
 import Booking from '@/views/Booking.vue';
-import Recipe from '@/views/Recipe.vue';
+import Recipes from '@/views/Recipes.vue';
+import SingleRecipe from '@/views/SingleRecipe.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,12 +25,16 @@ const router = createRouter({
       },
     },
     {
-      path: '/recipe',
-      name: 'recipe',
-      component: Recipe,
+      path: '/recipes',
+      name: 'recipes',
+      component: Recipes,
       meta: {
         title: "Ricettario"
       },
+    },
+    {
+      path: '/recipes/:id',
+      component: SingleRecipe
     },
     {
       path: '/booking',

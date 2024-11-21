@@ -15,3 +15,18 @@
 .hidden {
   display: none !important;
 }
+
+a {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+.info-recipe {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.info-recipe-img {
+  margin-right: 5px;
+}
