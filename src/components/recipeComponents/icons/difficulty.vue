@@ -55,6 +55,8 @@
         flex-direction: row;
         justify-content: space-around;
         align-items: baseline;
+
+        margin-bottom: 0.5rem;
     }
 
     .rectangle-easy {
@@ -64,7 +66,7 @@
 
         margin: 0.1rem;
         border-radius: 0.25rem;
-        opacity: 0.8;
+        opacity: 0.65;
     }
 
     .rectangle-medium {
@@ -74,7 +76,7 @@
 
         margin: 0.1rem;
         border-radius: 0.25rem;
-        opacity: 0.8;
+        opacity: 0.65;
     }
 
     .rectangle-hard {
@@ -84,7 +86,7 @@
 
         margin: 0.1rem;
         border-radius: 0.25rem;
-        opacity: 0.8;
+        opacity: 0.65;
     }
 
     .rectangle-very-hard {
@@ -94,6 +96,6 @@
 
         margin: 0.1rem;
         border-radius: 0.25rem;
-        opacity: 0.8;
+        opacity: 0.65;
     }
 </style>

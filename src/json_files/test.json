@@ -1,7 +1,7 @@
 {
     "title": "Ricetta",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "overflow_description": false,
+    "overflow_description": true,
     "preparing_time": {
             "type": "time",
             "value": 35
@@ -19,26 +19,54 @@
         "value": 4
     },
     "ingredients": [
-        "aglio",
-        "cipolla",
-        "carote",
-        "sedano",
-        "manzo",
-        "brodo",
-        "marmellata"
+        {
+            "ingredient": "aglio",
+            "quantity": 5,
+            "unit": "spicchi"
+        },
+        {
+            "ingredient": "marmellata",
+            "quantity": 5,
+            "unit": "kg"
+        },
+        {
+            "ingredient": "brodo",
+            "quantity": 200,
+            "unit": "litri"
+        },
+        {
+            "ingredient": "manzo",
+            "quantity": 5,
+            "unit": "quintali"
+        },
+        {
+            "ingredient": "sedano",
+            "quantity": 5,
+            "unit": "campi"
+        },
+        {
+            "ingredient": "carote",
+            "quantity": 5,
+            "unit": "tir"
+        },
+        {
+            "ingredient": "cipolla",
+            "quantity": 5,
+            "unit": "afriche"
+        }
     ],
     "steps": [
         {
-
+            "step_description": "step1"
         },
         {
-
+            "step_description": "step2"
         },
         {
-
+            "step_description": "step3"
         },
         {
-
+            "step_description": "step4"
         }
     ],
     "display": true,

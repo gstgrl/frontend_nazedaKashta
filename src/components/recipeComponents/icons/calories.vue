@@ -1,7 +1,17 @@
 <template>
-    <div class="info-recipe">
+    <div class="info-recipe" v-if="!mobile">
         <img src="../../../assets/fire.png" :alt="data.type" class="info-recipe-img">
         <p>{{ data.value }} Kcal</p>
+    </div>
+
+    <div class="info-recipe" v-else>
+        <img src="../../../assets/fire.png" 
+            :alt="data.type" 
+            class="info-recipe-img" 
+            data-bs-toggle="tooltip" 
+            data-bs-placement="bottom" 
+            data-bs-custom-class="custom-tooltip" 
+            :data-bs-title="data.value + ' Kcal'">
     </div>
 </template>
 
@@ -11,6 +21,10 @@
         props: {
             data: {
                 type: Object,
+                required: true
+            },
+            mobile: {
+                type: Boolean,
                 required: true
             }
         }

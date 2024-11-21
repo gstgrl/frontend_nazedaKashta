@@ -12,14 +12,14 @@
             </div>
 
             <div class="description">
-                <p>{{ data.description }}</p>
-                <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" :data-bs-content="data.description" v-if="overflow_description">altro</button>
+                <p v-if="!mobile">{{ data.description }}</p>
+                <button type="button" class="btn orange-button-color my-2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" :data-bs-content="data.description" v-if="mobile">Descrizione</button>
             </div>
 
             <div class="info">
-                <PreparingTime :data="data.preparing_time"/>
-                <CookingTime :data="data.cooking_time"/>
-                <Calories :data="data.calories"/>
+                <PreparingTime :data="data.preparing_time" :mobile="mobile"/>
+                <CookingTime :data="data.cooking_time" :mobile="mobile"/>
+                <Calories :data="data.calories" :mobile="mobile"/>
             </div>
         </div>
     </div>
@@ -43,6 +43,12 @@
             return{
                 display: this.data.display,
                 overflow_description: this.data.overflow_description,
+                mobile: true
+            }
+        },
+        mounted() {
+            if (window.matchMedia("(min-width: 768px)").matches) {
+                this.mobile = false
             }
         },
         components: {
@@ -55,12 +61,11 @@
 </script>
 
 <style scoped>
-
     .card {
         width: 15rem;
     }
 
-    h5 {
+    h5, h4 {
         margin: 0 !important;
     }
 
@@ -72,12 +77,17 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
     }
 
     .info {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+    }
+
+    .orange-button-color {
+        width: 100%;
     }
 
     @media (min-width: 768px) {

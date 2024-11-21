@@ -26,5 +26,7 @@
 </script>
 
 <style scoped>
-
+    .meal-conainer {
+        width: fit-content;
+    }
 </style>
