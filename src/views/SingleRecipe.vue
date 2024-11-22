@@ -44,6 +44,7 @@
     import CookingTime from '../components/recipeComponents/icons/cookingTime.vue';
     import PreparingTime from '../components/recipeComponents/icons/preparingTime.vue';
     import Difficulty from '../components/recipeComponents/icons/difficulty.vue';
+    import { useDevice } from '@/javasciptFiles/isMobile';
 
     export default {
         setup() {
@@ -59,7 +60,7 @@
         data() {
             return {
                 recipe: data,
-                mobile: false
+                mobile: useDevice()
             }
         },
         components: {

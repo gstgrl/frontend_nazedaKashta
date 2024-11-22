@@ -1,7 +1,7 @@
 <template>
     <div class="info-recipe" v-if="!mobile">
         <img src="../../../assets/fire.png" :alt="data.type" class="info-recipe-img">
-        <p>{{ data.value }} Kcal</p>
+        <p>{{ data.value }} {{ data.unit }}</p>
     </div>
 
     <div class="info-recipe" v-else>

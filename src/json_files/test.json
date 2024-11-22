@@ -1,18 +1,22 @@
 {
     "title": "Ricetta",
+    "recipe_img": "",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     "overflow_description": true,
     "preparing_time": {
             "type": "time",
-            "value": 35
+            "value": 35,
+            "unit": "min"
     },
     "cooking_time": {
             "type": "chef",
-            "value": 25
+            "value": 25,
+            "unit": "min"
     },
     "calories": {
             "type": "kcal",
-            "value": 400
+            "value": 400,
+            "unit": "Kcal"
     },
     "difficulty": {
         "type": "difficulty",

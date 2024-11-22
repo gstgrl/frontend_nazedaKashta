@@ -4,7 +4,7 @@
 
 
 <template>
-    <div class="container footer">
+    <div class="container footer" v-if="!authState.isLoggedIn">
 
         <div class="container text-center">
             <div class="row">
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+    import { authState } from '@/firebase/isLogged';
     import offices from '../json_files/offices.json'
     import cardPosition from './cardPosition.vue';
 

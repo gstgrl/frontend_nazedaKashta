@@ -30,6 +30,7 @@
     import CookingTime from './icons/cookingTime.vue';
     import PreparingTime from './icons/preparingTime.vue';
     import Difficulty from './icons/difficulty.vue';
+    import { useDevice } from '@/javasciptFiles/isMobile';
 
 
     export default {
@@ -43,7 +44,7 @@
             return{
                 display: this.data.display,
                 overflow_description: this.data.overflow_description,
-                mobile: true
+                mobile: useDevice()
             }
         },
         mounted() {
