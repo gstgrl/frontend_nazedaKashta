@@ -44,13 +44,11 @@
             return{
                 display: this.data.display,
                 overflow_description: this.data.overflow_description,
-                mobile: useDevice()
+                mobile: false
             }
         },
         mounted() {
-            if (window.matchMedia("(min-width: 768px)").matches) {
-                this.mobile = false
-            }
+            console.log(useDevice())
         },
         components: {
             Calories,
