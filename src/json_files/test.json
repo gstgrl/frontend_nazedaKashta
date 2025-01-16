@@ -20,7 +20,8 @@
     },
     "difficulty": {
         "type": "difficulty",
-        "value": 4
+        "value": 4,
+        "unit": null
     },
     "ingredients": [
         {
