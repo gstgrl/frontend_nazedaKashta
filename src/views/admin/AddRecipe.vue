@@ -4,9 +4,13 @@
 
 <template>
     <div class="container">
+        <div class="progress mb-4" role="progressbar" aria-label="Example 10px high" :aria-valuenow="progress" aria-valuemin="0" :aria-valuemax="progressMax" style="height: 10px">
+            <div class="progress-bar" :style="{width: progress*(100/progressMax) + '%'}"></div>
+        </div>
+
         <div class="row">
             <!-- Sezione per la visualizzazione in tempo reale dei dati-->
-            <div class="col-8">
+            <div class="col-8  recipe-row">
 
                 <h1>{{ title }}</h1>
                 <p>{{ description }}</p>
@@ -22,15 +26,26 @@
                         <Difficulty :data="difficulty" class="mx-auto"/>
                         <PreparingTime :data="preparing_time" :mobile="mobile"/>
                         <CookingTime :data="cooking_time" :mobile="mobile"/>
-                        <Calories :data="calories" :mobile="mobile"/>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-8" v-if="images.length != 0">
+                    <div class="col-8" v-if="steps.length != 0">
                         <div class="stepContainerImages">
-                            <div v-for="(image, index) in images"  :key="index" class="col-md-3 text-center">
-                                <img :src="image" class="img-thumbnail mb-2" style="max-width: 100px;">
+                            <div class="card mb-3" style="max-width: 540px;" v-for="(step, index) in steps"  :key="index">
+                                <div class="row g-0">
+
+                                    <div class="col-md-4">
+                                        <img :src="step.url" class="img-fluid rounded-start" alt="immagine procedimento">
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Step {{ step.number }}</h5>
+                                            <p class="card-text">{{ step.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -88,15 +103,6 @@
                                 <select class="form-select" aria-label="Default select example" v-model="temporary_cooking_time.unit" required>
                                     <option value="min.">min.</option>
                                     <option value="h.">h.</option>
-                                </select>
-                            </div>
-                            
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">Calorie ingerite</span>
-                                <input class="form-control  form-control-sm" type="number" id="formFile" v-model="temporary_calories.value" required>
-                                <select class="form-select" aria-label="Default select example" v-model="temporary_calories.unit" required>
-                                    <option value="cal">cal</option>
-                                    <option value="Kcal">Kcal</option>
                                 </select>
                             </div>
 
@@ -158,19 +164,19 @@
                 <div v-else-if="page == 4">
                     <div class="mb-5">
                         <form @submit.prevent="addStep">
-                            <label for="formFileSm" class="form-label"><strong>Aggiungi un passaggio</strong></label>
+                            <label for="formFileSm" class="form-label"><strong>Aggiungi uno step</strong></label>
 
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Descrizione</label>
-                                <textarea class="form-control mb-3" type="text" id="formFile" v-model="description"></textarea>
+                                <textarea class="form-control mb-3" type="text" id="formFile" v-model="temporaryStepDescription" required></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Aggiungi foto</label>
-                                <input type="file" class="form-control" @change="uploadImages" accept="image/*" multiple/>
+                                <input type="file" class="form-control" @change="uploadImages" accept="image/*" required/>
                             </div>
 
-                            <button type="submit" class="btn btn-success">Aggiungi Step</button>
+                            <button type="submit" class="btn btn-success">Aggiungi</button>
                         </form>
                     </div>
 
@@ -180,32 +186,43 @@
                     </div>
                 </div>
 
+                <div v-else-if="page == 5">
+                    <div class="mb-5">
+                        <button class="btn btn-success" @click="sendRecipe">Salva Ricetta</button>
+                    </div>
+
+                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                        <button type="button" class="btn btn-outline-primary"@click="previousPage">Indietro</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import Calories from '@/components/recipeComponents/icons/calories.vue';
     import CookingTime from '@/components/recipeComponents/icons/cookingTime.vue';
     import Difficulty from '@/components/recipeComponents/icons/difficulty.vue';
     import PreparingTime from '@/components/recipeComponents/icons/preparingTime.vue';
+    import { saveRecipe } from '@/firebase/firebaseFunctions';
     //import { useDevice } from '@/javasciptFiles/isMobile';
 
     export default {
         data() {
             return {
                 mobile: false,
+                progress: 0,
+                progressMax: 6,
                 recipeInfoChanged: false,
                 page: 1,
                 step: 1,
 
+                // dati da mandare al database
 
                 title: '',
                 recipe_img: '', 
                 description: '',
-                ingredients: [],
-                images: [],
 
                 preparing_time: {
                     type: "time",
@@ -217,16 +234,16 @@
                     value: 0,
                     unit: ''
                 },
-                calories: {
-                    type: "kcal",
-                    value: 0,
-                    unit: ''
-                },
                 difficulty: {
                     type: "difficulty",
                     value: 0,
                     unit: ''
                 },
+
+                ingredients: [],
+                steps: [],
+
+                //Dati temporanei, utilizzati solamente durante il salvataggio e la modifica della ricetta
 
                 temporaryIngredientName: '',
                 temporaryIngredientQuantity: 0,
@@ -240,13 +257,12 @@
                     value: 0,
                     unit: ''
                 },
-                temporary_calories: {
-                    value: 0,
-                    unit: ''
-                },
                 temporary_difficulty: {
                     value: 0
-                }
+                },
+
+                temporaryStepDescription: "",
+                temporaryStepImage: ""
             }
         },
         methods: {
@@ -267,13 +283,9 @@
 
                 this.preparing_time.unit =  this.temporary_preparing_time.unit
                 this.cooking_time.unit = this.temporary_cooking_time.unit
-                this.calories.unit = this.temporary_calories.unit
-
-                console.log(this.preparing_time, this.cooking_time, this.calories, this.difficulty.value)
 
                 this.preparing_time.value =  this.temporary_preparing_time.value
                 this.cooking_time.value = this.temporary_cooking_time.value
-                this.calories.value = this.temporary_calories.value
                 this.difficulty.value = this.temporary_difficulty.value
 
                 this.recipeInfoChanged = true
@@ -281,41 +293,55 @@
                 this.temporary_cooking_time.unit = ''
                 this.temporary_cooking_time.value = 0
 
-                this.temporary_calories.unit = ''
-                this.temporary_calories.value = 0
-
                 this.temporary_preparing_time.unit = ''
                 this.temporary_preparing_time.value = 0
 
                 this.temporary_difficulty.value = 0
             },
             addStep() {
+                const currentStep = {
+                    "number": this.step,
+                    "description": this.temporaryStepDescription,
+                    "url": this.temporaryStepImage
+                }
 
+                this.steps.push(currentStep)
+                this.step += 1
+                this.temporaryStepImage = " "
             },
             uploadImages(event) {
-                const files = event.target.files; // Ottieni tutti i file selezionati
-                for (let i = 0; i < files.length; i++) {
-                    const file = files[i];
-                    if (file.type.startsWith('image/')) {
-                        const imageUrl = URL.createObjectURL(file);
-                        this.images.push(imageUrl); // Aggiunge l'anteprima all'array
-                    } else {
-                    alert("Carica solo file immagine validi!");
-                    }
-                }
+                const file = event.target.files[0]; // Ottieni tutti i file selezionati
+                const imageUrl = URL.createObjectURL(file);
+                this.temporaryStepImage = imageUrl
             },
             nextPage() {
                 this.page += 1
+                this.progress += 1
             },
             previousPage() {
                 this.page -= 1
+                this.progress -= 1
+            },
+            sendRecipe() {
+                let recipe = {
+                    title: this.title,
+                    description: this.description,
+                    recipe_image: this.recipe_img,
+                    preparing_Time: this.preparing_time,
+                    cooking_Time: this.cooking_time,
+                    difficulty: this.difficulty,
+                    ingredients: this.ingredients,
+                    steps: this.steps
+                }
+
+                saveRecipe(recipe)
+                clearAll()
             }
         },
         components: {
             Difficulty,
             PreparingTime,
-            CookingTime,
-            Calories
+            CookingTime
         }
     }
 </script>
@@ -329,6 +355,11 @@
 
     .stepContainerImages {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .recipe-row {
+        justify-content: center;
     }
 </style>

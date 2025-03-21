@@ -1,5 +1,5 @@
 <template>
-    <div class="card recipe-card" v-if="data.display">
+    <div class="card recipe-card" v-if="display">
         <img src="../../assets/background_img.jpg" class="card-img-top" alt="immagine della ricetta">
         <div class="card-body">
             <div class="title-difficulty-container">
@@ -7,6 +7,7 @@
                 <span>
                     <Difficulty
                         :data="data.difficulty"
+                        :mobile="mobile"
                     />
                 </span>
             </div>
@@ -17,20 +18,17 @@
             </div>
 
             <div class="info">
-                <PreparingTime :data="data.preparing_time" :mobile="mobile"/>
-                <CookingTime :data="data.cooking_time" :mobile="mobile"/>
-                <Calories :data="data.calories" :mobile="mobile"/>
+                <PreparingTime :data="data.preparing_Time" :mobile="mobile"/>
+                <CookingTime :data="data.cooking_Time" :mobile="mobile"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import Calories from './icons/calories.vue';
     import CookingTime from './icons/cookingTime.vue';
     import PreparingTime from './icons/preparingTime.vue';
     import Difficulty from './icons/difficulty.vue';
-    import { useDevice } from '@/javasciptFiles/isMobile';
 
 
     export default {
@@ -42,16 +40,15 @@
         },
         data() {
             return{
-                display: this.data.display,
-                overflow_description: this.data.overflow_description,
+                display: true,
+                overflow_description: false,
                 mobile: false
             }
         },
         mounted() {
-            console.log(useDevice())
+            console.log(this.data.id)
         },
         components: {
-            Calories,
             PreparingTime,
             CookingTime,
             Difficulty
@@ -82,7 +79,7 @@
     .info {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
     }
 
     .orange-button-color {

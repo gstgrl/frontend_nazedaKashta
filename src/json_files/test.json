@@ -3,12 +3,12 @@
     "recipe_img": "",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     "overflow_description": true,
-    "preparing_time": {
+    "preparing_Time": {
             "type": "time",
             "value": 35,
             "unit": "min"
     },
-    "cooking_time": {
+    "cooking_Time": {
             "type": "chef",
             "value": 25,
             "unit": "min"
@@ -62,16 +62,24 @@
     ],
     "steps": [
         {
-            "step_description": "step1"
+            "number": 1,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            "url": "....."
         },
         {
-            "step_description": "step2"
+            "number": 2,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            "url": "....."
         },
         {
-            "step_description": "step3"
+            "number": 3,
+            "description": "step3",
+            "url": "....."
         },
         {
-            "step_description": "step4"
+            "number": 4,
+            "description": "step4",
+            "url": "....."
         }
     ],
     "display": true,
