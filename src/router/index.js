@@ -42,7 +42,10 @@ const router = createRouter({
     },
     {
       path: '/recipes/:id',
-      component: SingleRecipe
+      component: SingleRecipe,
+      meta: {
+        image: "", // Questo valore verrà aggiornato dinamicamente
+      }
     },
     {
       path: '/booking',

@@ -1,5 +1,22 @@
 <script setup>
-  import { RouterLink } from 'vue-router'
+    import { RouterLink } from 'vue-router'
+    import { watch } from "vue";
+    import { useRoute } from "vue-router";
+    import defaultBanner from '@/assets/background_img.jpg'
+    import { useBannerStore } from "@/store/bannerStore";
+
+    const route = useRoute();
+    const bannerStore = useBannerStore();
+
+    // 🔄 Controlla il percorso della rotta e aggiorna il banner
+    watch(() => route.path, (newPath) => {
+        if (newPath.startsWith("/recipes/")) {
+            // Se sei in una ricetta, non modificare nulla (l'immagine sarà aggiornata in `SingleRecipe.vue`)
+        } else {
+            // Se torni alla home o altre pagine, resetta l'immagine
+            bannerStore.setBannerImage(defaultBanner);
+        }
+    });
 </script>
 
 <template>
@@ -19,7 +36,7 @@
                     <li class="nav-item">
                         <RouterLink class="nav-link" to="/admin/addRecipe"><h6>Aggiungi Ricetta</h6></RouterLink>
                     </li>
-                    <li class="nav-item hidden">
+                    <li class="nav-item">
                         <RouterLink class="nav-link" to="/admin/recipeManagement"><h6>Gestione Ricette</h6></RouterLink>
                     </li>
                 </ul>
@@ -31,7 +48,7 @@
 
     
 
-    <div class="banner" v-else>
+    <div class="banner" :style="{ backgroundImage: `url(${bannerStore.bannerImage})` }" v-else>
         <nav class="navbar navbar-expand-lg bg-body-tertiary container">
             <div class="container-fluid custom-container-navbar">
                 <RouterLink to="/" class="navbar-brand">
@@ -73,14 +90,14 @@
                 } catch (error) {
                     console.error("Errore durante il logout:", error);
                 }
-            }
+            },
+
         }
     }
 </script>
 
 <style>
     .banner {
-        background-image: url('../assets/background_img.jpg');
         background-size: cover; /* Fa in modo che l'immagine copra completamente l'area */
         background-position: center; /* Centra l'immagine */
         height: 500px;

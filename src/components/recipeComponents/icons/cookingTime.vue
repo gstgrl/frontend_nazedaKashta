@@ -1,7 +1,7 @@
 <template>
     <div class="info-recipe" v-if="!mobile">
         <img src="../../../assets/chef.png" :alt="data.type" class="info-recipe-img">
-        <p>{{ data.value }} {{ data.unit }}</p>
+        <p>{{ data.number }} {{ data.unit }}</p>
     </div>
 
     <div class="info-recipe" v-else>
@@ -17,6 +17,7 @@
 
 <script>
 
+
     export default {
         props: {
             data: {
@@ -26,6 +27,9 @@
             mobile: {
                 type: Boolean,
                 required: true
+            },
+            mounted() {
+                console.log(data)
             }
         }
     }

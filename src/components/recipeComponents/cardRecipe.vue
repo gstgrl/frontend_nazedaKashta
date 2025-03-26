@@ -1,6 +1,10 @@
 <template>
-    <div class="card recipe-card" v-if="display">
-        <img src="../../assets/background_img.jpg" class="card-img-top" alt="immagine della ricetta">
+    <div class="card recipe-card" v-if="data.display">
+        <div class="card-img-container">
+            <img :src="data.recipe_image" class="card-img-top" alt="immagine della ricetta">
+            <span class="tag"><Tag :data="data.mealTag"/></span>
+        </div>
+
         <div class="card-body">
             <div class="title-difficulty-container">
                 <RouterLink :to="`/recipes/${data.id}`"><h4 class="card-title">{{ data.title }}</h4></RouterLink>
@@ -29,6 +33,7 @@
     import CookingTime from './icons/cookingTime.vue';
     import PreparingTime from './icons/preparingTime.vue';
     import Difficulty from './icons/difficulty.vue';
+    import Tag from './icons/tag.vue';
 
 
     export default {
@@ -42,16 +47,15 @@
             return{
                 display: true,
                 overflow_description: false,
-                mobile: false
+                mobile: false,
+                tag: "Colazione"
             }
-        },
-        mounted() {
-            console.log(this.data.id)
         },
         components: {
             PreparingTime,
             CookingTime,
-            Difficulty
+            Difficulty,
+            Tag
         }
     }
 </script>
@@ -59,6 +63,16 @@
 <style scoped>
     .card {
         width: 15rem;
+    }
+
+    .card-img-container {
+        position: relative;
+    }
+
+    .tag {
+        position: absolute; /* Posizioniamo il tag sopra l'immagine */
+        top: 10px; /* A 10px dal bordo superiore della card */
+        right: 10px; /* A 10px dal bordo destro della card */
     }
 
     h5, h4 {

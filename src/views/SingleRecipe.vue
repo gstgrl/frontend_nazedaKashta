@@ -3,45 +3,39 @@
     import { db } from "@/firebase";
     import { doc, getDoc } from "firebase/firestore";
     import { useRoute } from 'vue-router';
-    //import data from '../json_files/test.json'
-    import CookingTime from '../components/recipeComponents/icons/cookingTime.vue';
-    import PreparingTime from '../components/recipeComponents/icons/preparingTime.vue';
-    import Difficulty from '../components/recipeComponents/icons/difficulty.vue';
+    import { useBannerStore } from "@/store/bannerStore";
+    import { useTitleStore } from "@/store/recipeTitleStore";
 
     const route = useRoute();
-    const recipeID = route.params.id; // Accesso al parametro dinamico "id"
-    const recipe = ref(null)
-
+    const recipeID = route.params.id; 
+    const recipe = ref(null);
+    const bannerStore = useBannerStore(); // Ottieni lo store globale per il banner
+    const titleStore = useTitleStore()
 
     const extractRecipe = async () => {
-
         try {
             const docRef = doc(db, "Recipes", recipeID);
             const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-            recipe.value = docSnap.data()
-            console.log("Dati ricetta:", docSnap.data());
-            return docSnap.data();
-        } else {
-            console.log("Nessuna ricetta trovata!");
-            return null;
-        }
+            if (docSnap.exists()) {
+                recipe.value = docSnap.data();
+                bannerStore.setBannerImage(recipe.value.recipe_image); // Aggiorna l'immagine
+                titleStore.setTitle(recipe.value.title);
+            } else {
+                console.log("Nessuna ricetta trovata!");
+            }
         } catch (error) {
             console.error("Errore nel recupero del documento:", error);
         }
-    }
+    };
 
-
-    onMounted(extractRecipe)
-
-    console.log(recipe)
+    onMounted(extractRecipe);
 </script>
 
 
 <template>
     <div class="container my-5" v-if="recipe">
         <h1>{{ recipe.title }}</h1>
+        <span><Tag :data="recipe.mealTag"/></span>
 
         <div class="row">
             <div class="col-10">
@@ -89,12 +83,17 @@
 </template>
 
 <script>
+    import CookingTime from "@/components/recipeComponents/icons/cookingTime.vue";
+    import PreparingTime from "@/components/recipeComponents/icons/preparingTime.vue";
+    import Difficulty from "@/components/recipeComponents/icons/difficulty.vue";
+    import Tag from "@/components/recipeComponents/icons/tag.vue";
 
     export default {
         components: {
             CookingTime,
             PreparingTime,
-            Difficulty
+            Difficulty,
+            Tag
         }
     };
 </script>

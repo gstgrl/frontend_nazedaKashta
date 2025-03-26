@@ -1,51 +1,45 @@
 <template>
     <div class="info-recipe ">
-        <div class="difficuty-icon" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" :data-bs-title="tooltip"    >
-            <div class="rectangle-easy"></div>
-            <div class="rectangle-medium" v-if="medium"></div>
-            <div class="rectangle-hard" v-if="hard"></div>
-            <div class="rectangle-very-hard" v-if="very_hard"></div>
+        <div class="difficuty-icon">
+            <div :class="['rectangle-easy', { active: easy }]"></div>
+            <div :class="['rectangle-medium', { active: medium }]"></div>
+            <div :class="['rectangle-hard', { active: hard }]"></div>
+            <div :class="['rectangle-very-hard', { active: very_hard }]"></div>
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
+    import { ref, watch } from 'vue';
 
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    const easy = ref(true)
+    const medium = ref(false)
+    const hard = ref(false)
+    const very_hard = ref(false)
 
-    export default {
-        props: {
-            data: {
-                type: Object,
-                required: true
-            }
-        },
-        data() {
-            return {
-                easy: true,
-                medium: false,
-                hard: false,
-                very_hard: false,
-                tooltip: 'Facile'
-            }
-        },
-        mounted() {
-            if(this.data.value == 2) {
-                this.medium = true
-                this.tooltip = "Media"
-            }else if(this.data.value == 3) {
-                this.medium = true
-                this.hard = true
-                this.tooltip = "Difficile"
-            }else if(this.data.value == 4) {
-                this.medium = true
-                this.hard = true
-                this.very_hard = true
-                this.tooltip = "Molto difficile"
-            }
+    const props = defineProps({
+        data: {
+            type: Object,
+            required: true
         }
-    }
+    });
+
+
+    const updateDifficulty = () => {
+        // Reset difficoltà
+        easy.value = false;
+        medium.value = false;
+        hard.value = false;
+        very_hard.value = false;
+
+        // Logica per settare le difficoltà in base al numero
+        if (props.data.number >= 1) easy.value = true;
+        if (props.data.number >= 2) medium.value = true;
+        if (props.data.number >= 3) hard.value = true;
+        if (props.data.number >= 4) very_hard.value = true;
+    };
+    
+    watch(() => props.data.number, updateDifficulty, { immediate: true });
 </script>
 
 <style scoped>
@@ -59,7 +53,7 @@
         margin-bottom: 0.5rem;
     }
 
-    .rectangle-easy {
+    .rectangle-easy.active {
         height: 15px;
         width: 8px;
         background-color: green;
@@ -69,7 +63,7 @@
         opacity: 0.65;
     }
 
-    .rectangle-medium {
+    .rectangle-medium.active {
         height: 20px;
         width: 8px;
         background-color: yellow;
@@ -79,7 +73,7 @@
         opacity: 0.65;
     }
 
-    .rectangle-hard {
+    .rectangle-hard.active {
         height: 25px;
         width: 8px;
         background-color: orange;
@@ -89,7 +83,7 @@
         opacity: 0.65;
     }
 
-    .rectangle-very-hard {
+    .rectangle-very-hard.active {
         height: 30px;
         width: 8px;
         background-color: red;

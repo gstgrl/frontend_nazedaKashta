@@ -14,9 +14,11 @@ export async function saveRecipe(RecipeObject) {
             cooking_Time: RecipeObject.cooking_Time,
             difficulty: RecipeObject.difficulty,
             ingredients: RecipeObject.ingredients,
-            steps: RecipeObject.steps
+            steps: RecipeObject.steps,
+            mealTag: RecipeObject.meal_tag,
+            display: RecipeObject.display
         });
-        console.log("Utente aggiunto con ID:", docRef.id);
+        //console.log("Utente aggiunto con ID:", docRef.id);
     } catch (e) {
         console.error("Errore durante l'aggiunta: ", e);
     }
