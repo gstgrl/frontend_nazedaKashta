@@ -104,4 +104,15 @@
         border-radius: 1rem;
         padding: 0.5rem;
     }
+
+    @media (max-width: 767px) {
+        .row {
+            flex-direction: column;
+        }
+
+        .col-2 {
+            width: 100%;
+        }
+    }
+
 </style>

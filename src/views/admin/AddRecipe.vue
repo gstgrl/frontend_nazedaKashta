@@ -174,8 +174,6 @@
                         </ul>
                     </div>
 
-                    
-
                     <div class="col-4  recipe-container">
                         <Difficulty :data="difficulty" class="mx-auto"/>
                         <PreparingTime :data="preparingTime" :mobile="mobile"/>
@@ -383,6 +381,7 @@
         box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.5);
         border-radius: 1rem;
         padding: 0.5rem;
+        margin: 0.5rem;
     }
 
     .stepContainerImages {

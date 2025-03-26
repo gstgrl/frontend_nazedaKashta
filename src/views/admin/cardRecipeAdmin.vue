@@ -65,8 +65,8 @@
         </div>
 
         <div class="modify-div">
-            <button class="btn btn-dark" @click="hideRecipe(data)">{{ data.display ? "Nascondi": "Mostra" }}</button>
-            <button class="btn btn-danger" @click="deleteRecipe(data.id)">Elimina</button>
+            <button class="btn btn-dark buttonModifier" @click="hideRecipe(data)">{{ data.display ? "Nascondi": "Mostra" }}</button>
+            <button class="btn btn-danger buttonModifier" @click="deleteRecipe(data.id)">Elimina</button>
         </div>
     </div>
 </template>
@@ -103,6 +103,7 @@
 <style scoped>
     .card {
         width: 15rem;
+        margin: 1rem;
     }
 
     .card-img-container {
@@ -123,28 +124,19 @@
         box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.5);
     }
 
-    .title-difficulty-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
+    
     .info {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
-    .orange-button-color {
-        width: 100%;
+        flex-direction: column;
     }
 
     .modify-div {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        margin-bottom: 0.5rem;
+        flex-direction: column;
+        margin: 1rem;
+    }
+
+    .buttonModifier {
+        margin: 0.3rem;
+        font-size: 70%;
     }
 
     .deleted {
@@ -155,5 +147,31 @@
         .card {
             width: 22rem;
         }
+
+        .title-difficulty-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .orange-button-color {
+            width: 100%;
+        }
+
+        .modify-div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-bottom: 0.5rem;
+        }
     }
+
+
 </style>

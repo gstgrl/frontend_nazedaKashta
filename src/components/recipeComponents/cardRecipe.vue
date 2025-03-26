@@ -63,16 +63,7 @@
 <style scoped>
     .card {
         width: 15rem;
-    }
-
-    .card-img-container {
-        position: relative;
-    }
-
-    .tag {
-        position: absolute; /* Posizioniamo il tag sopra l'immagine */
-        top: 10px; /* A 10px dal bordo superiore della card */
-        right: 10px; /* A 10px dal bordo destro della card */
+        margin: 1rem;
     }
 
     h5, h4 {
@@ -83,26 +74,52 @@
         box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.5);
     }
 
-    .title-difficulty-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .info {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
     .orange-button-color {
         width: 100%;
     }
 
+    @media (max-width: 768px) {
+        .card-img-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tag {
+            width: 100%;
+            margin: 0.2rem;
+            justify-content: space-around;
+        }
+    }
+
+
+
     @media (min-width: 768px) {
         .card {
             width: 22rem;
+        }
+
+        .card-img-container {
+            position: relative;
+        }
+
+        .tag {
+            position: absolute; /* Posizioniamo il tag sopra l'immagine */
+            top: 10px; /* A 10px dal bordo superiore della card */
+            right: 10px; /* A 10px dal bordo destro della card */
+        }
+
+        .title-difficulty-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
         }
     }
 </style>

@@ -9,8 +9,6 @@ import Dashboard from '@/views/admin/Dashboard.vue';
 import AddRecipe from '@/views/admin/AddRecipe.vue';
 import RecipeManagement from '@/views/admin/RecipeManagement.vue';
 
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/firebase";
 import { authState } from '@/firebase/isLogged';
 
 const router = createRouter({
