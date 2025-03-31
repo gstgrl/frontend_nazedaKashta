@@ -1,0 +1,89 @@
+{
+    "title": "Ricetta",
+    "recipe_img": "",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "overflow_description": true,
+    "preparing_Time": {
+            "type": "time",
+            "value": 35,
+            "unit": "min"
+    },
+    "cooking_Time": {
+            "type": "chef",
+            "value": 25,
+            "unit": "min"
+    },
+    "calories": {
+            "type": "kcal",
+            "value": 400,
+            "unit": "Kcal"
+    },
+    "difficulty": {
+        "type": "difficulty",
+        "value": 4,
+        "unit": null
+    },
+    "ingredients": [
+        {
+            "ingredient": "aglio",
+            "quantity": 5,
+            "unit": "spicchi"
+        },
+        {
+            "ingredient": "marmellata",
+            "quantity": 5,
+            "unit": "kg"
+        },
+        {
+            "ingredient": "brodo",
+            "quantity": 200,
+            "unit": "litri"
+        },
+        {
+            "ingredient": "manzo",
+            "quantity": 5,
+            "unit": "quintali"
+        },
+        {
+            "ingredient": "sedano",
+            "quantity": 5,
+            "unit": "campi"
+        },
+        {
+            "ingredient": "carote",
+            "quantity": 5,
+            "unit": "tir"
+        },
+        {
+            "ingredient": "cipolla",
+            "quantity": 5,
+            "unit": "afriche"
+        }
+    ],
+    "steps": [
+        {
+            "number": 1,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            "url": "....."
+        },
+        {
+            "number": 2,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            "url": "....."
+        },
+        {
+            "number": 3,
+            "description": "step3",
+            "url": "....."
+        },
+        {
+            "number": 4,
+            "description": "step4",
+            "url": "....."
+        }
+    ],
+    "display": true,
+    "id": 100000
+
+    
+}
