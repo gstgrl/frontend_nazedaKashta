@@ -1,5 +1,6 @@
 <script setup>
     const currentYear = new Date().getFullYear()
+    const GSTGRL_LINK = import.meta.env.VITE_GSTGRL_LINK
 </script>
 
 
@@ -18,7 +19,9 @@
 
                         <button type="button" class="btn btn-link hidden">Privacy Policy</button>
                         <button type="button" class="btn btn-link hidden">Cookie Policy</button>
-                        <button type="button" class="btn btn-link">GSTGRL</button>
+                       
+                        <h6>Powered by:  <a :href="GSTGRL_LINK" class="btn btn-link" target="_blank">GSTGRL</a></h6>
+                        
                     </div>
 
                     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -40,7 +43,7 @@
 
                 <div class="col">
                     <div class="info-contact">
-                        <h5 class="card-title">Dott.ssa Nazeda Kashta</h5>
+                        <h5 class="card-title"><RouterLink to="/login">Dott.ssa Nazeda Kashta</RouterLink></h5>
 
                         <div class="social-container">
                             <a href="https://www.instagram.com/dottoressanazedakashta/" target="_blank" class="social-link me-3">
@@ -66,6 +69,7 @@
 
 <script>
     import { authState } from '@/firebase/isLogged';
+    import { RouterLink } from 'vue-router';
     import offices from '../json_files/offices.json'
     import cardPosition from './cardPosition.vue';
 
@@ -110,7 +114,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 
     .location-container {
@@ -118,6 +122,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+
+        margin-top: 0.5rem;
     }
 
     .info-contact {

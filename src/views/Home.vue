@@ -1,3 +1,8 @@
+<script setup>
+    import unicamLogo from "@/assets/unicamLogo.png"
+    import unipgLogo from "@/assets/unipgLogo.jpg"
+</script>
+
 <template>
     <div class="container">
         <div class="info-container">
@@ -47,11 +52,11 @@
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionHome">
                     <div class="accordion-body">
                         <div>
-                            Laurea triennale in <strong>Scienze del fitness e del benessere e dei prodotti della salute</strong> presso università di Camerino.<span><img src="https://seeklogo.com/images/U/universita-di-camerino-logo-17EA82BAA1-seeklogo.com.gif" alt="Uni-logo" class="uni-logo"></span>
+                            Laurea triennale in <strong>Scienze del fitness e del benessere e dei prodotti della salute</strong> presso università di Camerino.<span><img :src="unicamLogo" alt="Uni-logo" class="uni-logo"></span>
                         </div>
 
                         <div>
-                            Laurea magistrale in <strong>Scienze dell'alimentazione e nutrizione umana</strong> presso l'università di Perugia. <span><img src="http://www.sottotorchio.com/images/logo-universita-degli-studi-di-perugia.jpg" alt="Uni-logo" class="uni-logo"></span>
+                            Laurea magistrale in <strong>Scienze dell'alimentazione e nutrizione umana</strong> presso l'università di Perugia. <span><img :src="unipgLogo" alt="Uni-logo" class="uni-logo"></span>
                         </div>
                         Diploma di scuola di specializzazione SANIS
                     </div>

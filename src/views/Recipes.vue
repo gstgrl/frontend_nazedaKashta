@@ -96,4 +96,11 @@
         100% { transform: rotate(360deg); }
     }
 
+    @media (max-width: 425px) {
+        .meal-conainer {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
 </style>

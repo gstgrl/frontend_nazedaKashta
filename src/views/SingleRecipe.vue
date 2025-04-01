@@ -47,7 +47,7 @@
                             <div class="row g-0">
 
                                 <div class="col-md-4">
-                                    <img :src="step.url" class="img-fluid rounded-start" alt="immagine procedimento">
+                                    <img :src="step.url" class="img-fluid rounded-start step-img" alt="immagine procedimento">
                                 </div>
 
                                 <div class="col-md-8">
@@ -105,7 +105,11 @@
         padding: 0.5rem;
     }
 
-    @media (max-width: 767px) {
+    .step-img {
+        max-width: 260px;
+    }
+
+    @media (max-width: 768px) {
         .row {
             flex-direction: column;
         }

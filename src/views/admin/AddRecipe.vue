@@ -3,6 +3,7 @@
     const step = ref(1)
     const page =  ref(1)
     const progress = ref(0) 
+    const router = useRouter()
 
     //useful variables
     const file = ref(null)
@@ -88,7 +89,7 @@
         }
     }
 
-    const sendRecipe = () => {
+    const sendRecipe = async() => {
                 const recipe = {
                     title: title.value,
                     description: recipeDescription.value,
@@ -101,6 +102,10 @@
                     meal_tag: mealTag.value,
                     display: true
                 }
+                nextPage()
+
+                await nextTick()
+                router.push("/admin")
 
                 saveRecipe(recipe)
             }
@@ -306,6 +311,8 @@
                                     <option value="g">g</option>
                                     <option value="hg">hg</option>
                                     <option value="Kg">Kg</option>
+                                    <option value=" ">numero</option>
+                                    <option value="pizzico">pizzico</option>
                                 </select>
                             </div>
 
@@ -354,6 +361,10 @@
                     </div>
                 </div>
 
+                <div v-else-if="page == 5">
+                    <h6>Ricetta salvata correttamente!</h6>
+                </div>
+
             </div>
         </div>
     </div>
@@ -364,7 +375,8 @@
     import Difficulty from '@/components/recipeComponents/icons/difficulty.vue';
     import PreparingTime from '@/components/recipeComponents/icons/preparingTime.vue';
     import { saveRecipe } from '@/firebase/firebaseFunctions';
-    import { ref } from 'vue';
+    import { useRouter } from 'vue-router';
+    import { nextTick, ref } from 'vue';
     //import { useDevice } from '@/javasciptFiles/isMobile';
 
     export default {
